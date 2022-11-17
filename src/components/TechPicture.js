@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CardMedia } from '@mui/material';
 import { useDrag } from 'react-dnd';
 
 function TechPicture({ img, id }) {
     const [{isDragging}, drag] = useDrag(() => ({
         type: "techPicture",
+        item: { id },
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()
         })

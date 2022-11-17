@@ -5,6 +5,9 @@ import PresetContainer from './PresetContainer';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+let jsons = require.context('../assets/data', false, /\.(json)$/ );
+let images = require.context('../assets/imgs', false, /\.*$/);
+
 class InfoContainer extends Component {
 
     render() {
@@ -12,9 +15,9 @@ class InfoContainer extends Component {
             <div>
                 <DndProvider backend = {HTML5Backend}>
                     <Grid2 container spacing = {2} margin = {"auto"} width = {"90%"}>
-                        <PresetContainer/>
+                        <PresetContainer jsons = {jsons} images = { images }/>
                         <Grid2 className = {"techniqueScrollable"} xs = {4}>
-                            <TechniqueScrollable/>
+                            <TechniqueScrollable jsons = {jsons} images = { images }/>
                         </Grid2>
                     </Grid2>
                 </DndProvider>

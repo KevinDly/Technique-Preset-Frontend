@@ -3,9 +3,9 @@ import { Box } from '@mui/system';
 import { Paper, Typography } from '@mui/material'
 
 //TODO: Move this somewhere else
-let jsons = require.context('../assets/data', true);
+//let jsons = require.context('../assets/data', true);
 
-function grabCardInfo(card) {
+function grabCardInfo(card, jsons) {
     if(card == null){
         return <Typography></Typography>
     }
@@ -13,6 +13,7 @@ function grabCardInfo(card) {
     const cardJson = jsons(filename)
     return <Typography> { cardJson.description } </Typography>
 }
+
 class PresetInformation extends Component {
 
     render() {
@@ -20,7 +21,7 @@ class PresetInformation extends Component {
             <Paper>
                 { 
                     this.props.cards.map((card) => (
-                        grabCardInfo(card)
+                        grabCardInfo(card, this.props.jsons)
                     )) 
                 }
             </Paper>

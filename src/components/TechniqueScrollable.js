@@ -3,18 +3,29 @@ import { Paper } from '@mui/material';
 import TechniqueCard from './TechniqueCard';
 import { Box } from '@mui/system';
 
-//import data from '../assets/data'
-/**
- * 
- * @param {*} r 
- * @returns {Array}
- */
+//TODO: Move to const file
+const suffix = "_s.png"
+const techFailImage = "./fail.png"
 
-function importAll(r) {
-    return r.keys().map(r)
+function importJson(filename, jsons, images) {
+    const data = jsons(filename)
+    const imageName  = "./" + data.name.toLowerCase().replace(/\s+/g, '') + suffix
+    console.log("imageName: " + imageName)
+    console.log(filename)
+
+    var image = NaN
+
+    if(images.keys().includes(imageName)) {
+        image = images(imageName)
+    }
+    else {
+        image = images(techFailImage)
+    }
+
+    return <Paper key = {data.name}>
+        <TechniqueCard name = {data.name} description = {data.description} image = { image } />
+    </Paper>
 }
-
-const jsonList = importAll(require.context('../assets/data/', false, /\.(json)$/))
 
 class TechniqueScrollable extends Component {
 
@@ -22,11 +33,7 @@ class TechniqueScrollable extends Component {
         return (
             <div className = "techniqueDiv" height = "400px">
                 <Box className = "techniqueBox" sx = {{display: "flex", flexDirection: "column", height: 700, overflow: "hidden", overflowY: "scroll"}}>
-                    {jsonList.map((data) => 
-                            <Paper key = {data.name}>
-                                <TechniqueCard name = {data.name} description = {data.description} />
-                            </Paper>
-                    )}
+                    {this.props.jsons.keys().map((filename) => importJson(filename, this.props.jsons, this.props.images))}
                 </Box>
             </div>
         );
