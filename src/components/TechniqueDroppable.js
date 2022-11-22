@@ -25,6 +25,14 @@ function TechniqueDroppable(props) {
         addImage(null)
     }
 
+    const componentFunc = (img, sx, drag) => (
+        <Box
+            ref = { drag }
+            component = "img"
+            src = { img }
+            sx = { sx }
+        />)
+
     var image = NaN
 
     if(props.card != null) {
@@ -42,10 +50,13 @@ function TechniqueDroppable(props) {
                     {
                         props.card == null ? 
                             <Typography variant = "h5"> + </Typography> :
-                            <Box component = "img" 
+                            <TechPicture img = { image } id = { props.card } 
+                                            sx = {{ width: "75%", height: "75%"}}
+                                            componentType = { componentFunc }/>
+                            /*<Box component = "img" 
                                 src = { image }
                                 width = "75%"
-                                height = "75%" />
+                                height = "75%" />*/
                     }
                 </Box>
     </Grid2>

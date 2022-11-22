@@ -6,9 +6,9 @@ function App() {
     
     <div className="App">
         <div>
-          <AppBar position = {"absolute"} padding ={"5px"}>
+          <AppBar position = {"absolute"} sx = {{p: 1}}>
             <Typography variant = {"h4"}>
-              Sample App Bar  
+              Technique Preset Creator  
             </Typography>
           </AppBar>
         </div>
