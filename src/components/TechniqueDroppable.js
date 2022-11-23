@@ -9,14 +9,15 @@ import TechPicture from './TechPicture';
 function TechniqueDroppable(props) {
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "techPicture",
-        drop: (item) => addImage(item.id),
+        drop: (item) => {
+            addImage(item.id)
+        },
         collect: (monitor) => ({
             isOver: !!monitor.isOver()
         })
     }))
 
     const addImage = (id) => {
-        console.log(id)
         props.onCardUpdate(id, props.index)
     }
 
@@ -25,16 +26,18 @@ function TechniqueDroppable(props) {
         addImage(null)
     }
 
-    const componentFunc = (img, sx, drag) => (
+    const componentFunc = (img, sx, drag, id) => (
         <Box
             ref = { drag }
             component = "img"
             src = { img }
             sx = { sx }
+            id = { id }
         />)
 
     var image = NaN
 
+    
     if(props.card != null) {
         const imageName = "./" + props.card.toLowerCase().replace(/\s+/g, '') + '_s.png'
         try {
@@ -45,6 +48,7 @@ function TechniqueDroppable(props) {
         }
     }
 
+    console.log(`Current card in TechniqueDroppable: ` + props.card)
     return <Grid2 xs = {props.cards.length/12} height = "100%" width = {(100/props.cards.length).toString() + "%"} ref = { drop } onContextMenu = { removeImage }> 
                 <Box alignItems = "center" justifyContent = "center" display = "flex" height = "400px" width = "100%" border = "2px dashed grey">
                     {

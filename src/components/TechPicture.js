@@ -9,17 +9,9 @@ function TechPicture({ img, id, sx, componentType }) {
         item: { id },
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()
-        })
+        }),
     }))
 
-    const componentFunc = (img, sx, ref) => (
-        <CardMedia
-            ref = { drag }
-            component = "img"
-            image = { img }
-            sx = { sx }
-        />
-    ) 
     return (
         /*<CardMedia  
         ref = { drag }
@@ -28,7 +20,7 @@ function TechPicture({ img, id, sx, componentType }) {
         border = { isDragging ? "5px solid pink" : "0px" }
         sx = {{ height: "95%", width: "95%", objectFit: "contain", paddingTop: "5px", paddingBottom: "5px", paddingLeft: "5px" }}
         />*/
-        componentType(img, sx, drag)
+        componentType(img, sx, drag, id)
     );
 }
 export default TechPicture;

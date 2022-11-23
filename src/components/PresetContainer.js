@@ -15,8 +15,8 @@ class PresetContainer extends Component {
     }
 
     handleCardUpdate(card, index) {
-        var newCards = this.state.cards
-
+        const newCards = Array.from(this.state.cards)
+        console.log("Card Update: " + card + " at " + index)
         if(card != null && newCards.includes(card)) {
             const index = newCards.indexOf(card)
             newCards[index] = null
@@ -27,8 +27,6 @@ class PresetContainer extends Component {
     }
 
     render() {
-        console.log("rendered")
-        console.log(this.state.cards)
         return (
             <Grid2 container direction="column" className = "techPreset" xs = {8}>
                 <TechPresetDisplay images = { this.props.images } className = "cardPreset" cards = { this.state.cards } onChange = { this.handleCardUpdate }/>

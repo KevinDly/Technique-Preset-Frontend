@@ -10,8 +10,6 @@ class TechPresetDisplay extends Component {
     }
 
     handleChange(card, index) {
-        console.log("prop upward")
-        console.log(card + " " + index)
         this.props.onChange(card, index)
     }
 
@@ -20,6 +18,7 @@ class TechPresetDisplay extends Component {
             <Grid2 container xs = {12}>
                 {
                     this.props.cards.map((card, index) => {
+                        console.log(`Card update in TechPresetDisplay: ${card} at ${index} with cards ${this.props.cards}`);
                         return <TechniqueDroppable images = { this.props.images } key = { "slot" + index } card = { card } index = { index } cards = {this.props.cards} onCardUpdate = { this.handleChange }  />
                     })
                 }
