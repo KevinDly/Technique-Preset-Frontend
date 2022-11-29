@@ -7,7 +7,7 @@ import { TextField } from '@mui/material';
 const suffix = "_s.png"
 const techFailImage = "./fail.png"
 
-function importJson(filename, jsons, images) {
+function importJson(filename, jsons, images, change) {
     const data = jsons(filename)
     const imageName  = "./" + data.name.toLowerCase().replace(/\s+/g, '') + suffix
 
@@ -21,7 +21,7 @@ function importJson(filename, jsons, images) {
     }
 
     return <Paper key = {data.name}>
-        <TechniqueCard name = {data.name} description = {data.description} image = { image } />
+        <TechniqueCard name = {data.name} description = {data.description} image = { image } onChangeTechnique = { change }/>
     </Paper>
 }
 
@@ -32,6 +32,7 @@ class TechniqueScrollable extends Component {
         this.onSearchChange = this.onSearchChange.bind(this)
         this.state = {searchBox: ''}
     }
+    
     onSearchChange(e) {
         var text = e.target.value.toLowerCase().replace(/\s/g, '')
         this.setState({searchBox: text})
@@ -42,7 +43,7 @@ class TechniqueScrollable extends Component {
             <div className = "techniqueDiv" height = "400px">
                 <TextField onChange = { this.onSearchChange } fullWidth/>
                 <Box className = "techniqueBox" sx = {{padding: "5px", display: "flex", flexDirection: "column", height: 700, overflow: "hidden", overflowY: "scroll"}}>
-                    {this.props.jsons.keys().filter(key => key.toLowerCase().replace(/\s/g, '').includes(this.state.searchBox)).map((filename) => importJson(filename, this.props.jsons, this.props.images))}
+                    {this.props.jsons.keys().filter(key => key.toLowerCase().replace(/\s/g, '').includes(this.state.searchBox)).map((filename) => importJson(filename, this.props.jsons, this.props.images, this.props.onChangeTechnique))}
                 </Box>
             </div>
         );
