@@ -24,10 +24,10 @@ class TechniqueCard extends Component {
     //TODO: Add input box with restriction to numbers 1 <= x <= 10 and have it call this event when a button is pressed
     //Event should have the id name (the name that is currently on this card) as well as the number that the box has
     onChangeTechnique(event) {
-        var newEvent = {level: event.target.value, id: this.props.name}
+        var newEvent = {level: parseInt(event.target.value), id: this.props.name.toLowerCase().replace(/\s+/g, '')}
         console.log("Changing technique level!")
         console.log(newEvent)
-        this.props.onChangeTechnique(event)
+        this.props.onChangeTechnique(newEvent)
     }
 
     onLevelBarChange(event) {

@@ -31,7 +31,7 @@ class PresetContainer extends Component {
             <Grid2 container direction="column" className = "techPreset" xs = {8}>
                 <TechPresetDisplay images = { this.props.images } className = "cardPreset" cards = { this.state.cards } onChange = { this.handleCardUpdate }/>
                 <Grid2 xs = {12}>
-                    <PresetInformation jsons = { this.props.jsons } className = "cardInformation" cards = { this.state.cards }/>
+                    <PresetInformation jsons = { this.props.jsons } className = "cardInformation" cards = { this.state.cards } techInfo = { this.props.techInfo }/>
                 </Grid2>
             </Grid2>
         );

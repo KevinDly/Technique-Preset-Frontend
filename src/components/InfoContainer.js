@@ -23,7 +23,16 @@ class InfoContainer extends Component {
 
     //TODO: Add code that changes the technique within the techniqueInfo Dict
     onChangeTechnique(event) {
-        return
+        const id = event.id
+        const level = isNaN(event.level) ? 1 : event.level
+        
+        var techniqueInfo = {...this.state.techniqueInfo}
+        console.log(id)
+        console.log(level)
+        techniqueInfo[id]["level"] = level
+        this.setState({techniqueInfo})
+
+        console.log(this.state.techniqueInfo)
     }
 
     render() {
@@ -31,7 +40,7 @@ class InfoContainer extends Component {
             <div>
                 <DndProvider backend = {HTML5Backend}>
                     <Grid2 container spacing = {2} margin = {"auto"} width = {"90%"}>
-                        <PresetContainer jsons = {jsons} images = { images }/>
+                        <PresetContainer jsons = {jsons} images = { images } techInfo = {this.state.techniqueInfo}/>
                         <Grid2 className = {"techniqueScrollable"} xs = {4}>
                             <TechniqueScrollable jsons = {jsons} images = { images } onChangeTechnique = { this.onChangeTechnique }/>
                         </Grid2>
